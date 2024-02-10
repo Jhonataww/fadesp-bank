@@ -1,7 +1,7 @@
 package com.fadesp.bank.domain.models;
 
 
-import com.fadesp.bank.domain.enums.TipoConta;
+import com.fadesp.bank.domain.enums.TipoContaEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -30,7 +30,7 @@ public class Conta implements Serializable {
     private Double saldo;
 
     @NotNull(message = "O tipo de conta é obrigatório")
-    private TipoConta tipoConta;
+    private TipoContaEnum tipoContaEnum;
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
@@ -48,8 +48,8 @@ public class Conta implements Serializable {
         return saldo;
     }
 
-    public TipoConta getTipoConta() {
-        return tipoConta;
+    public TipoContaEnum getTipoConta() {
+        return tipoContaEnum;
     }
 
     public Pessoa getTitular() {
@@ -68,8 +68,8 @@ public class Conta implements Serializable {
         this.saldo = saldo;
     }
 
-    public void setTipoConta(TipoConta tipoConta) {
-        this.tipoConta = tipoConta;
+    public void setTipoConta(TipoContaEnum tipoContaEnum) {
+        this.tipoContaEnum = tipoContaEnum;
     }
 
     public void setTitular(Pessoa titular) {

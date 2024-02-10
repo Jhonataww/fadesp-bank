@@ -1,9 +1,9 @@
 package com.fadesp.bank.domain.models;
 
 
-import com.fadesp.bank.domain.enums.EstadoCivil;
-import com.fadesp.bank.domain.enums.Genero;
-import com.fadesp.bank.domain.enums.Nacionalidade;
+import com.fadesp.bank.domain.enums.EstadoCivilEnum;
+import com.fadesp.bank.domain.enums.GeneroEnum;
+import com.fadesp.bank.domain.enums.NacionalidadeEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,7 +31,7 @@ public class Pessoa implements Serializable {
     private Date dataNascimento;
 
     @NotNull(message = "O gênero é obrigatório")
-    private Genero genero;
+    private GeneroEnum generoEnum;
 
     @NotBlank(message = "O endereço é obrigatório")
     @Size(max = 255, message = "O endereço deve ter no máximo 255 caracteres")
@@ -53,10 +53,10 @@ public class Pessoa implements Serializable {
     private String rg;
 
     @NotNull(message = "O estado civil é obrigatório")
-    private EstadoCivil estadoCivil;
+    private EstadoCivilEnum estadoCivilEnum;
 
     @NotNull(message = "A nacionalidade é obrigatória")
-    private Nacionalidade nacionalidade;
+    private NacionalidadeEnum nacionalidadeEnum;
 
     @NotBlank(message = "O nome do pai é obrigatório")
     @Size(max = 100, message = "O nome do pai deve ter no máximo 100 caracteres")
@@ -86,8 +86,8 @@ public class Pessoa implements Serializable {
         return dataNascimento;
     }
 
-    public Genero getGenero() {
-        return genero;
+    public GeneroEnum getGenero() {
+        return generoEnum;
     }
 
     public String getEndereco() {
@@ -110,12 +110,12 @@ public class Pessoa implements Serializable {
         return rg;
     }
 
-    public EstadoCivil getEstadoCivil() {
-        return estadoCivil;
+    public EstadoCivilEnum getEstadoCivil() {
+        return estadoCivilEnum;
     }
 
-    public Nacionalidade getNacionalidade() {
-        return nacionalidade;
+    public NacionalidadeEnum getNacionalidade() {
+        return nacionalidadeEnum;
     }
 
     public String getNomePai() {
