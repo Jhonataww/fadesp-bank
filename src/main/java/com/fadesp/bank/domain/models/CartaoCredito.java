@@ -1,11 +1,17 @@
 package com.fadesp.bank.domain.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.DecimalMin;
 
 @Entity
 public class CartaoCredito extends Cartao{
 
+    @DecimalMin(value = "0.0", inclusive = false, message = "O Limite deve ser maior que zero")
     private double limite;
+
+    @Column(columnDefinition = "double default 0.0")
+    private Double fatura = 0.0;
 
     public double getLimite() {
         return limite;
@@ -15,4 +21,11 @@ public class CartaoCredito extends Cartao{
         this.limite = limite;
     }
 
+    public Double getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Double fatura) {
+        this.fatura = fatura;
+    }
 }
