@@ -24,8 +24,10 @@ public class Conta implements Serializable {
     private String numeroConta;
 
     @NotNull(message = "O saldo é obrigatório")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O saldo deve ser maior que zero")
     private Double saldo;
+
+    @Size(max = 14 , message = "O número da conta deve ter no máximo 14 caracteres")
+    private String cnpj;
 
     @NotNull(message = "O tipo de conta é obrigatório")
     private TipoContaEnum tipoContaEnum;
@@ -72,5 +74,21 @@ public class Conta implements Serializable {
 
     public void setTitular(Pessoa titular) {
         this.titular = titular;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public TipoContaEnum getTipoContaEnum() {
+        return tipoContaEnum;
+    }
+
+    public void setTipoContaEnum(TipoContaEnum tipoContaEnum) {
+        this.tipoContaEnum = tipoContaEnum;
     }
 }

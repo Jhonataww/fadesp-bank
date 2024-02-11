@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
+    Conta findByTitularCpf(String cpf);
+
+    Conta findByCnpjOrTitularCpf(String cnpj, String cpf);
+
 }
