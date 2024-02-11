@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "dfca0828-6219-4c6e-9be0-4cbd4b6ad1af",
+		"name": "Fadesp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25527101"
+	},
+	"item": [
+		{
+			"name": "Pessoa Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"João Silva\",\r\n  \"dataNascimento\": \"1990-01-01\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"endereco\": \"Rua ABC, 123\",\r\n  \"telefone\": \"1122334455\",\r\n  \"email\": \"joao.silva@example.com\",\r\n  \"cpf\": \"04143271281\",\r\n  \"rg\": \"1234567\",\r\n  \"estadoCivil\": \"CASADO\",\r\n  \"nacionalidade\": \"BRASILEIRO\",\r\n  \"nomePai\": \"José Silva\",\r\n  \"nomeMae\": \"Maria Silva\",\r\n  \"estado\": \"São Paulo\",\r\n  \"pais\": \"Brasil\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cadastro/pessoa",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"pessoa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conta Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroConta\": \"1234567890\",\r\n  \"saldo\": 1000.0,\r\n  \"tipoConta\": \"FISICA\",\r\n  \"cnpj\" : \"09822895000114\",\r\n  \"titular\": {\r\n    \"id\": 1,\r\n    \"nome\": \"João Silva\",\r\n    \"dataNascimento\": \"1990-01-01T00:00:00.000+00:00\",\r\n    \"genero\": \"MASCULINO\",\r\n    \"endereco\": \"Rua ABC, 123\",\r\n    \"telefone\": \"1122334455\",\r\n    \"email\": \"joao.silva@example.com\",\r\n    \"cpf\": \"04143271281\",\r\n    \"rg\": \"1234567\",\r\n    \"estadoCivil\": \"CASADO\",\r\n    \"nacionalidade\": \"BRASILEIRO\",\r\n    \"nomePai\": \"José Silva\",\r\n    \"nomeMae\": \"Maria Silva\",\r\n    \"estado\": \"São Paulo\",\r\n    \"pais\": \"Brasil\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cadastro/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"conta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cartao Debito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCartao\": \"1234567890123456\",\r\n  \"nomeTitular\": \"João Silva\",\r\n  \"dataValidade\": \"12/23\",\r\n  \"cvv\": \"123\",\r\n  \"conta\": {\r\n    \"id\": 1,\r\n    \"numeroConta\": \"1234567890\",\r\n    \"saldo\": 1000.0,\r\n    \"cnpj\": null,\r\n    \"tipoContaEnum\": \"FISICA\",\r\n    \"titular\": {\r\n        \"id\": 1,\r\n        \"nome\": \"João Silva\",\r\n        \"dataNascimento\": \"1990-01-01T00:00:00.000+00:00\",\r\n        \"genero\": \"MASCULINO\",\r\n        \"endereco\": \"Rua ABC, 123\",\r\n        \"telefone\": \"1122334455\",\r\n        \"email\": \"joao.silva@example.com\",\r\n        \"cpf\": \"04143271281\",\r\n        \"rg\": \"1234567\",\r\n        \"estadoCivil\": \"CASADO\",\r\n        \"nacionalidade\": \"BRASILEIRO\",\r\n        \"nomePai\": \"José Silva\",\r\n        \"nomeMae\": \"Maria Silva\",\r\n        \"estado\": \"São Paulo\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cartao/debito",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cartao",
+						"debito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cartao Credito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCartao\": \"1234567890123456\",\r\n  \"nomeTitular\": \"João Silva\",\r\n  \"dataValidade\": \"12/23\",\r\n  \"cvv\": \"123\",\r\n  \"limite\": 1000.0,\r\n  \"conta\": {\r\n    \"id\": 1,\r\n    \"numeroConta\": \"1234567890\",\r\n    \"saldo\": 1000.0,\r\n    \"titular\": {\r\n        \"id\": 1,\r\n        \"nome\": \"João Silva\",\r\n        \"dataNascimento\": \"1990-01-01T00:00:00.000+00:00\",\r\n        \"genero\": \"MASCULINO\",\r\n        \"endereco\": \"Rua ABC, 123\",\r\n        \"telefone\": \"1122334455\",\r\n        \"email\": \"joao.silva@example.com\",\r\n        \"cpf\": \"04143271281\",\r\n        \"rg\": \"1234567\",\r\n        \"estadoCivil\": \"CASADO\",\r\n        \"nacionalidade\": \"BRASILEIRO\",\r\n        \"nomePai\": \"José Silva\",\r\n        \"nomeMae\": \"Maria Silva\",\r\n        \"estado\": \"São Paulo\",\r\n        \"pais\": \"Brasil\"\r\n    },\r\n    \"tipoConta\": \"FISICA\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cartao/credito",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cartao",
+						"credito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pagamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"codigoDebito\": 123456789,\r\n  \"cpfCnpjPagador\": \"04143271281\",\r\n  \"metodoPagamento\": \"CARTAO_DEBITO\",\r\n  \"numeroCartao\": \"1234567890123456\",\r\n  \"valorPagamento\": 500.0,\r\n  \"status\": \"PENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pagamento/realizar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamento",
+						"realizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pagamento/consultar?status=PENDENTE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamento",
+						"consultar"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "PENDENTE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pagamento/excluir",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamento",
+						"excluir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":3,\r\n    \"status\": \"PROCESSADO_COM_SUCESSO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pagamento/alterar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamento",
+						"alterar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
