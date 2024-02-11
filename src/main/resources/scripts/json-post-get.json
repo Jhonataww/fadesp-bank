@@ -1,0 +1,132 @@
+// localhost:8080/cadastro/pessoa
+{
+  "nome": "João Silva",
+  "dataNascimento": "1990-01-01",
+  "genero": "MASCULINO",
+  "endereco": "Rua ABC, 123",
+  "telefone": "1122334455",
+  "email": "joao.silva@example.com",
+  "cpf": "04143271281",
+  "rg": "1234567",
+  "estadoCivil": "CASADO",
+  "nacionalidade": "BRASILEIRO",
+  "nomePai": "José Silva",
+  "nomeMae": "Maria Silva",
+  "estado": "São Paulo",
+  "pais": "Brasil"
+}
+
+//localhost:8080/cadastro/conta
+{
+  "numeroConta": "1234567890",
+  "saldo": 1000.0,
+  "tipoConta": "FISICA",
+  "cnpj" : "09822895000114",
+  "titular": {
+    "id": 1,
+    "nome": "João Silva",
+    "dataNascimento": "1990-01-01T00:00:00.000+00:00",
+    "genero": "MASCULINO",
+    "endereco": "Rua ABC, 123",
+    "telefone": "1122334455",
+    "email": "joao.silva@example.com",
+    "cpf": "04143271281",
+    "rg": "1234567",
+    "estadoCivil": "CASADO",
+    "nacionalidade": "BRASILEIRO",
+    "nomePai": "José Silva",
+    "nomeMae": "Maria Silva",
+    "estado": "São Paulo",
+    "pais": "Brasil"
+  }
+}
+
+//localhost:8080/cartao/credito
+{
+  "numeroCartao": "1234567890123456",
+  "nomeTitular": "João Silva",
+  "dataValidade": "12/23",
+  "cvv": "123",
+  "limite": 1000.0,
+  "conta": {
+    "id": 1,
+    "numeroConta": "1234567890",
+    "saldo": 1000.0,
+    "titular": {
+      "id": 1,
+      "nome": "João Silva",
+      "dataNascimento": "1990-01-01T00:00:00.000+00:00",
+      "genero": "MASCULINO",
+      "endereco": "Rua ABC, 123",
+      "telefone": "1122334455",
+      "email": "joao.silva@example.com",
+      "cpf": "04143271281",
+      "rg": "1234567",
+      "estadoCivil": "CASADO",
+      "nacionalidade": "BRASILEIRO",
+      "nomePai": "José Silva",
+      "nomeMae": "Maria Silva",
+      "estado": "São Paulo",
+      "pais": "Brasil"
+    },
+    "tipoConta": "FISICA"
+  }
+}
+
+//localhost:8080/cartao/debito
+{
+  "numeroCartao": "1234567890123456",
+  "nomeTitular": "João Silva",
+  "dataValidade": "12/23",
+  "cvv": "123",
+  "conta": {
+    "id": 1,
+    "numeroConta": "1234567890",
+    "saldo": 1000.0,
+    "cnpj": null,
+    "tipoContaEnum": "FISICA",
+    "titular": {
+      "id": 1,
+      "nome": "João Silva",
+      "dataNascimento": "1990-01-01T00:00:00.000+00:00",
+      "genero": "MASCULINO",
+      "endereco": "Rua ABC, 123",
+      "telefone": "1122334455",
+      "email": "joao.silva@example.com",
+      "cpf": "04143271281",
+      "rg": "1234567",
+      "estadoCivil": "CASADO",
+      "nacionalidade": "BRASILEIRO",
+      "nomePai": "José Silva",
+      "nomeMae": "Maria Silva",
+      "estado": "São Paulo",
+      "pais": "Brasil"
+    }
+  }
+}
+
+
+//localhost:8080/pagamento/realizar
+{
+  "codigoDebito": 123456789,
+  "cpfCnpjPagador": "04143271281",
+  "metodoPagamento": "CARTAO_DEBITO",
+  "numeroCartao": "1234567890123456",
+  "valorPagamento": 500.0,
+  "status": "PENDENTE"
+}
+
+//localhost:8080/pagamento/consultar?codigoDebito=1&cpfCnpj=09822895000114&status=PENDENTE
+// passando filtro pela url
+
+
+//localhost:8080/pagamento/excluir
+{
+  "id":3
+}
+
+//localhost:8080/pagamento/alterar
+{
+  "id":3,
+  "status": "PROCESSADO_COM_SUCESSO"
+}
