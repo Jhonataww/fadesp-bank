@@ -27,11 +27,15 @@ Na pasta `src/main/resources/Postman`, você encontrará uma collection do Postm
 
 ## Utilização
 
-Para utilizar a API, basta enviar requisições HTTP para os endpoints desejados, utilizando o método adequado (GET, POST, PUT, DELETE) e fornecendo os parâmetros necessários. Certifique-se de seguir as instruções de cada endpoint e fornecer os dados corretamente para garantir o funcionamento adequado da API.
+Para utilizar a API, é necessário seguir algumas etapas:
 
-Este README fornece uma visão geral do projeto e dos principais endpoints da API. Para obter mais detalhes sobre cada endpoint, consulte a documentação completa da API ou analise o código-fonte do projeto.
+1. **Cadastro de Pessoa e Conta:** Antes de realizar um pagamento, é necessário cadastrar uma pessoa física ou jurídica (`POST /cadastro/pessoa`) e uma conta associada a essa pessoa (`POST /cadastro/conta`). A conta é essencial para identificar o pagador e registrar o débito.
 
-Para quaisquer dúvidas ou problemas, entre em contato com a equipe responsável pelo projeto.
+2. **Cadastro de Cartão de Crédito ou Débito:** Dependendo do método de pagamento que está sendo realizado, é necessário cadastrar um cartão de crédito (`POST /cartao/credito`) ou de débito (`POST /cartao/debito`). O cartão é utilizado para efetuar o pagamento.
+
+3. **Realização do Pagamento:** Com a pessoa, a conta e o cartão devidamente cadastrados, é possível realizar o pagamento (`POST /pagamento/realizar`). Certifique-se de fornecer os dados corretos, incluindo o código de débito, CPF/CNPJ do pagador, número do cartão, valor do pagamento, entre outros.
+
+Caso não seja realizada a etapa de cadastro de pessoa, conta e cartão associado, as validações não permitirão que o pagamento seja efetuado.
 
 ## Documentação da API
 
@@ -42,3 +46,19 @@ http://localhost:8080/swagger-ui.html
 ```
 
 Na documentação do Swagger, você encontrará informações detalhadas sobre cada endpoint da API, incluindo os parâmetros necessários, os tipos de dados esperados, os códigos de resposta e exemplos de requisições e respostas.
+
+
+Na documentação do Swagger, você encontrará informações detalhadas sobre cada endpoint da API, incluindo os parâmetros necessários, os tipos de dados esperados, os códigos de resposta e exemplos de requisições e respostas.
+
+## Scripts e Arquivos Adicionais
+
+Na pasta `src/main/resources/scripts`, estão disponíveis os seguintes arquivos:
+
+- `cadastro_pessoa.json`: JSON contendo o corpo da requisição para cadastrar uma pessoa.
+- `cadastro_conta.json`: JSON contendo o corpo da requisição para cadastrar uma conta.
+- `cadastro_cartao_credito.json`: JSON contendo o corpo da requisição para cadastrar um cartão de crédito.
+- `cadastro_cartao_debito.json`: JSON contendo o corpo da requisição para cadastrar um cartão de débito.
+- `realizar_pagamento.json`: JSON contendo o corpo da requisição para realizar um pagamento.
+- `inserts.sql`: Script SQL contendo comandos para inserir dados na base de dados.
+
+Esses arquivos podem ser utilizados para facilitar o teste e a integração
