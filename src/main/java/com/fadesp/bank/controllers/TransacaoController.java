@@ -1,14 +1,16 @@
 package com.fadesp.bank.controllers;
 
+import com.fadesp.bank.domain.enums.StatusPagamentoEnum;
 import com.fadesp.bank.domain.models.Pagamento;
 import com.fadesp.bank.services.PagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pagamento")
@@ -23,4 +25,15 @@ public class TransacaoController {
         return ResponseEntity.ok("Pagamento realizado com sucesso!");
     }
 
+    @GetMapping("/consultar")
+    public ResponseEntity<Object> findAllPagamentos(@RequestParam(required = false) Long codigoDebito,
+                                                    @RequestParam(required = false) String cpfCnpj,
+                                                    @RequestParam(required = false)StatusPagamentoEnum status){
+        Optional<List<Pagamento>> productO = Optional.ofNullable(pagamentoService.findAllPagamentos(codigoDebito, cpfCnpj, status));
+
+        if(productO.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto not found.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(productO);
+    }
 }

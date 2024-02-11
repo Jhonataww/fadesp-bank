@@ -8,7 +8,12 @@ import com.fadesp.bank.repositories.ContaRepository;
 import com.fadesp.bank.repositories.PagamentoRepository;
 import com.fadesp.bank.services.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.awt.print.Pageable;
+import java.util.List;
 
 @Service
 public class PagamentoImpl implements PagamentoService {
@@ -46,6 +51,24 @@ public class PagamentoImpl implements PagamentoService {
         }
 
         return "Pagamento realizado com sucesso!";
+    }
+
+    @Override
+    public List<Pagamento> findAllPagamentos(Long codigoDebito, String cpfCnpj, StatusPagamentoEnum status) {
+        Specification<Pagamento> spec = (root, query, criteriaBuilder) -> {
+            if (codigoDebito != null) {
+                return criteriaBuilder.equal(root.get("codigoDebito"), codigoDebito);
+            }
+            if (cpfCnpj != null) {
+                return criteriaBuilder.equal(root.get("cpfCnpjPagador"), cpfCnpj);
+            }
+            if (status != null) {
+                return criteriaBuilder.equal(root.get("status"), status);
+            }
+            return null;
+        };
+
+        return pagamentoRepository.findAll(spec);
     }
 
     private void boletos(Pagamento pagamento) {

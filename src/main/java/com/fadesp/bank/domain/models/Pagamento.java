@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 @Entity
-public class Pagamento {
+public class Pagamento  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
