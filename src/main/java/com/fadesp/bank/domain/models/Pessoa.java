@@ -31,7 +31,7 @@ public class Pessoa implements Serializable {
     private Date dataNascimento;
 
     @NotNull(message = "O gênero é obrigatório")
-    private GeneroEnum generoEnum;
+    private GeneroEnum genero;
 
     @NotBlank(message = "O endereço é obrigatório")
     @Size(max = 255, message = "O endereço deve ter no máximo 255 caracteres")
@@ -53,10 +53,10 @@ public class Pessoa implements Serializable {
     private String rg;
 
     @NotNull(message = "O estado civil é obrigatório")
-    private EstadoCivilEnum estadoCivilEnum;
+    private EstadoCivilEnum estadoCivil;
 
     @NotNull(message = "A nacionalidade é obrigatória")
-    private NacionalidadeEnum nacionalidadeEnum;
+    private NacionalidadeEnum nacionalidade;
 
     @NotBlank(message = "O nome do pai é obrigatório")
     @Size(max = 100, message = "O nome do pai deve ter no máximo 100 caracteres")
@@ -78,59 +78,119 @@ public class Pessoa implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Date getDataNascimento() {
         return dataNascimento;
     }
 
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
     public GeneroEnum getGenero() {
-        return generoEnum;
+        return genero;
+    }
+
+    public void setGenero(GeneroEnum genero) {
+        this.genero = genero;
     }
 
     public String getEndereco() {
         return endereco;
     }
 
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     public String getTelefone() {
         return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getCpf() {
         return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getRg() {
         return rg;
     }
 
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
     public EstadoCivilEnum getEstadoCivil() {
-        return estadoCivilEnum;
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(EstadoCivilEnum estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
     public NacionalidadeEnum getNacionalidade() {
-        return nacionalidadeEnum;
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(NacionalidadeEnum nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     public String getNomePai() {
         return nomePai;
     }
 
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
+    }
+
     public String getNomeMae() {
         return nomeMae;
+    }
+
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
     }
 
     public String getEstado() {
         return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String getPais() {
         return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }
