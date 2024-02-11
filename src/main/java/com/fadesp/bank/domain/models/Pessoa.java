@@ -4,6 +4,7 @@ package com.fadesp.bank.domain.models;
 import com.fadesp.bank.domain.enums.EstadoCivilEnum;
 import com.fadesp.bank.domain.enums.GeneroEnum;
 import com.fadesp.bank.domain.enums.NacionalidadeEnum;
+import com.fadesp.bank.util.IsCpfCnpj;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -135,7 +136,11 @@ public class Pessoa implements Serializable {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        if(IsCpfCnpj.isCpf(cpf)) {
+            this.cpf = cpf;
+            return;
+        }
+        throw new IllegalArgumentException("CPF inválido");
     }
 
     public String getRg() {
