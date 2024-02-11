@@ -7,7 +7,6 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.io.Serializable;
 
@@ -22,7 +21,6 @@ public class Conta implements Serializable {
 
     @NotBlank(message = "O número da conta é obrigatório")
     @Size(max = 20, message = "O número da conta deve ter no máximo 20 caracteres")
-    @UniqueElements(message = "O número da conta já está em uso")
     private String numeroConta;
 
     @NotNull(message = "O saldo é obrigatório")
