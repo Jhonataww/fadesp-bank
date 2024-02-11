@@ -1,8 +1,11 @@
 package com.fadesp.bank.controllers;
 
+import com.fadesp.bank.domain.dtos.AlterarPagamentoRecord;
+import com.fadesp.bank.domain.dtos.ExcluirPagamentoRecord;
 import com.fadesp.bank.domain.enums.StatusPagamentoEnum;
 import com.fadesp.bank.domain.models.Pagamento;
 import com.fadesp.bank.services.PagamentoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,7 @@ public class TransacaoController {
     @Autowired
     PagamentoService pagamentoService;
 
+    @Transactional
     @PostMapping("/realizar")
     public ResponseEntity<String> realizarPagamento(@RequestBody @Valid Pagamento pagamento) {
         pagamentoService.realizarPagamento(pagamento);
@@ -35,5 +39,19 @@ public class TransacaoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto not found.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(productO);
+    }
+
+    @Transactional
+    @PostMapping("/alterar")
+    public ResponseEntity<String> alterarPagamento(@RequestBody @Valid AlterarPagamentoRecord pagamento) {
+        pagamentoService.alterarPagamento(pagamento);
+        return ResponseEntity.ok("Pagamento alterado com sucesso!");
+    }
+
+    @Transactional
+    @PostMapping("/excluir")
+    public ResponseEntity<String> excluir(@RequestBody @Valid ExcluirPagamentoRecord pagamento) {
+        pagamentoService.excluirPagamento(pagamento);
+        return ResponseEntity.ok("Pagamento alterado com sucesso!");
     }
 }

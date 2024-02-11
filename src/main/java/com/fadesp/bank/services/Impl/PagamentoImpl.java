@@ -1,5 +1,7 @@
 package com.fadesp.bank.services.Impl;
 
+import com.fadesp.bank.domain.dtos.AlterarPagamentoRecord;
+import com.fadesp.bank.domain.dtos.ExcluirPagamentoRecord;
 import com.fadesp.bank.domain.enums.StatusPagamentoEnum;
 import com.fadesp.bank.domain.models.Pagamento;
 import com.fadesp.bank.repositories.CartaoCreditoRepository;
@@ -7,12 +9,11 @@ import com.fadesp.bank.repositories.CartaoDebitoRepository;
 import com.fadesp.bank.repositories.ContaRepository;
 import com.fadesp.bank.repositories.PagamentoRepository;
 import com.fadesp.bank.services.PagamentoService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -30,6 +31,7 @@ public class PagamentoImpl implements PagamentoService {
     @Autowired
     CartaoDebitoRepository cartaoDebitoRepository;
 
+    @Transactional
     @Override
     public String realizarPagamento(Pagamento pagamento) {
 
@@ -69,6 +71,35 @@ public class PagamentoImpl implements PagamentoService {
         };
 
         return pagamentoRepository.findAll(spec);
+    }
+
+    @Transactional
+    @Override
+    public String alterarPagamento(AlterarPagamentoRecord pagamentoRecord) {
+        Pagamento pagamento = pagamentoRepository.findById(pagamentoRecord.id()).orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
+
+        if(pagamento.getStatus() == StatusPagamentoEnum.PROCESSADO_COM_SUCESSO){
+            throw new RuntimeException("Pagamento já foi pago, não pode ter seu status alterado");
+        }
+        if(pagamento.getStatus() == StatusPagamentoEnum.PROCESSADO_COM_FALHA && pagamentoRecord.status() != StatusPagamentoEnum.PENDENTE){
+            throw new RuntimeException("Pagamento está Processado com Falha, ele só pode ter seu status alterado para Pendente");
+        }
+
+        pagamento.setStatus(pagamentoRecord.status());
+        pagamentoRepository.save(pagamento);
+        return "Pagamento alterado com sucesso!";
+    }
+
+    @Transactional
+    @Override
+    public String excluirPagamento(ExcluirPagamentoRecord pagamentoRecord) {
+        Pagamento pagamento = pagamentoRepository.findById(pagamentoRecord.id()).orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
+
+        if(pagamento.getStatus() != StatusPagamentoEnum.PENDENTE){
+            throw new RuntimeException("Pagamento não pode ser excluido, pois já foi processado");
+        }
+        pagamentoRepository.delete(pagamento);
+        return "Pagamento excluido com sucesso!";
     }
 
     private void boletos(Pagamento pagamento) {
